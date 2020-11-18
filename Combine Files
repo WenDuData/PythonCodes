@@ -1,0 +1,15 @@
+import os as os
+import pandas as pd
+import dask as dk
+
+
+path = "./Sales_data"
+
+files = [file for file in os.listdir(path) if not file.startswith('.')] # Ignore hidden files
+
+all_data = pd.DataFrame()
+
+for file in files:
+    data = pd.read_csv(path+"/"+file)
+    all_data = pd.concat([all_data,data])
+    
