@@ -1,0 +1,14 @@
+clr.AddReference ("Microsoft.AnalysisServices.AdomdClient.dll")
+clr.AddReference ("System.Data")
+
+from Microsoft.AnalysisServices.AdomdClient import AdomdConnection , AdomdDataAdapter
+from System.Data import DataSet
+
+conn = AdomdConnection("Data Source=0.0.0.0;Catalog=MyCatalog;")
+conn.Open()
+cmd = conn.CreateCommand()
+cmd.CommandText = "your mdx query" # in your case 'select from finance'
+adp = AdomdDataAdapter(cmd)
+datasetParam =  DataSet()
+adp.Fill(datasetParam)
+conn.Close();
