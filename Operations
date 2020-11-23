@@ -1,0 +1,50 @@
+import pandas as pd
+import os as os
+import numpy as np
+
+pk = pd.read_csv("pokemon_data.csv")
+pk.head()
+
+pk.iloc [1:4]
+
+#Multi Condition same column
+pk.loc[pk['Type 1'].isin(["Fire", "Grass"])]
+
+#Multi Condition diff column
+pk.loc[pk['Type 1'].isin(["Fire", "Grass"]) & pk['Type 2'].isin(["Flying"])]
+
+#Create new flags
+pk['FF'] = np.where(pk['Type 1'] == "Fire" , "Y","N")
+
+#Multi-conditions
+conditions = [
+    (pk['Type 1'] == 'Fire') & (pk['Type 2'] == 'Flying'),
+    (pk['Type 1'] == 'Grass') & (pk['Type 2'] == 'Poison'),
+    (pk['Type 1'] == 'B')]
+choices = ['yellow', 'blue', 'purple']
+pk['color'] = np.select(conditions, choices, default='black')
+
+pk.head()
+
+
+#Split List, replace combine
+
+FL = []
+        
+Lq = [x for x in L if "?" in x]
+
+for string in Lq:
+        NewS = string.replace("%","-")
+        FL.append(NewS)
+
+        
+for string in Lq:
+        NewS = string.replace("%","-")
+        FL.append(NewS)
+
+
+Lnq = [x for x in L if "%" not in x]
+
+LFinish = FL + Lnq
+
+print(LFinish)
