@@ -1,0 +1,21 @@
+def GoReplace(list):
+        
+        L = []
+        Lq = [x for x in list if "?" in x]
+        Lnq = [x for x in list if "?" not in x]
+    
+        for x in Lq:
+            if "?" in x:
+              x1 = x.replace("?","1")
+              L.append(x1)
+        
+        for x in Lq:
+            if "?" in x:
+              x2 = x.replace("?","0")
+              L.append(x2)
+           
+        return L + Lnq
+    
+print(GoReplace(list = ["?11??1","1000?11","1110111","11"]))
+
+
